@@ -32,5 +32,4 @@ class AppTest(TestCase):
         with patch('builtins.input') as mocked_input:
             mocked_input.side_effect = ('Test', 'Test Author')
             app.ask_create_blog()
-
             self.assertIsNotNone(app.blogs.get('Test'))

@@ -2,6 +2,11 @@ from blog import Blog
 from post import Post
 
 MENU_PROMPT = 'Enter "c" to create a blogs, "l" to read one, "p" to create a post, "q" to quit.'
+POST_TEMP = '''
+          --- {} ---
+          
+          {}
+          '''
 
 blogs = dict() #blog_name : Blog object
 
@@ -32,15 +37,21 @@ def print_blogs():
 
 
 def ask_create_blog():
-    author = input('Please enter blog name: ')
     title = input('Please enter blog title ')
+    author = input('Please enter your name: ')
     blogs[title] = Blog(title, author)
 
 
+def print_posts(blog):
+    for post in blog.posts:
+        print_post(post)
+
+def print_post(post):
+    print(POST_TEMP.format(post.title, post.content))
+
 def ask_read_blog():
-    #title = input('Please enter the blog title:')
-    #for key, blog in blogs.item():
-    #    if (blog.title == title):
+    title = input('Please enter the blog title:')
+    print_posts(blogs[title])
     pass
 
 def ask_create_post():
